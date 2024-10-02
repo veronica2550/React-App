@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 //사용자 정의 태그는 function으로 만듦, 대문자로 시작해야함
-function Header() {
+function Header(props) {
+  console.log('props', props, props.title);
   return <header>
     <h1>
-      <a herf="/">WEB</a>
+      <a herf="/">{props.title}</a>
     </h1>
   </header>
 }
@@ -23,19 +24,19 @@ function Nav() {
     </ol>
   </nav>
 }
-function Article() {
+function Article(props) {
   return <article>
-    <h2>Welcome</h2>
-    Hello, WEB
+    <h2>{props.title}</h2>
+    {props.body}
   </article>
 }
 
 function App() {
   return (
     <div>
-      <Header></Header>
+      <Header title="REACT"></Header>
       <Nav></Nav>
-      <Article></Article>
+      <Article title="Welcome" body="Hello, WEB"></Article>
     </div>
   );
 }
