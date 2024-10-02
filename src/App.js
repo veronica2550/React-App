@@ -8,7 +8,7 @@ function Header(props) {
       {/* 클릭했을 때 page reload가 일어나지 않게 하는 방법
       함수 호출 될 때 onClick 콜백함수로 들어감
       preventDefault를 사용하면 a 태그가 동작하는 기본 동작을 방지함 -> 클릭해도 reload 방지 */}
-      <a herf="/" onClick={function (event) {
+      <a herf="/" onClick={(event) => {
         event.preventDefault();
         props.onChangeMode();
       }}>{props.title}</a>
@@ -42,7 +42,7 @@ function App() {
   ]
   return (
     <div>
-      <Header title="REACT" onChangeMode={function () {
+      <Header title="REACT" onChangeMode={() => {
         alert('Header')
       }}></Header>
       <Nav topics={topics}></Nav>
