@@ -19,7 +19,17 @@ function Nav(props) {
   const lis = []
   for (let i = 0; i < props.topics.length; i++) {
     let t = props.topics[i];
-    lis.push(<li key={t.id}><a href={'/read/' + t.id}>{t.title}</a></li>)
+    lis.push(<li key={t.id}>
+      <a id={t.id} href={'/read/' + t.id} onClick={event => {
+        event.preventDefault();
+        // props 이벤트 함수에 id 전달해야함.
+        // id 사용하는 가장 쉬운 방법 위 a 태그에 id 추가
+        // a 태그에 선언한 id 사용하는 방법
+        // event 유발시킨 태그(a) -> target
+        // 태그 내 id 가져옴 -> target.id
+        props.onChangeMode(event.target.id);
+      }}>{t.title}</a>
+    </li>)
   }
   return <nav>
     <ol>
@@ -45,7 +55,9 @@ function App() {
       <Header title="REACT" onChangeMode={() => {
         alert('Header')
       }}></Header>
-      <Nav topics={topics}></Nav>
+      <Nav topics={topics} onChangeMode={(id) => {
+        alert(id);
+      }}></Nav>
       <Article title="Welcome" body="Hello, WEB"></Article>
     </div>
   );
