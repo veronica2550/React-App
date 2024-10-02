@@ -5,7 +5,13 @@ function Header(props) {
   console.log('props', props, props.title);
   return <header>
     <h1>
-      <a herf="/">{props.title}</a>
+      {/* 클릭했을 때 page reload가 일어나지 않게 하는 방법
+      함수 호출 될 때 onClick 콜백함수로 들어감
+      preventDefault를 사용하면 a 태그가 동작하는 기본 동작을 방지함 -> 클릭해도 reload 방지 */}
+      <a herf="/" onClick={function (event) {
+        event.preventDefault();
+        props.onChangeMode();
+      }}>{props.title}</a>
     </h1>
   </header>
 }
@@ -36,7 +42,9 @@ function App() {
   ]
   return (
     <div>
-      <Header title="REACT"></Header>
+      <Header title="REACT" onChangeMode={function () {
+        alert('Header')
+      }}></Header>
       <Nav topics={topics}></Nav>
       <Article title="Welcome" body="Hello, WEB"></Article>
     </div>
